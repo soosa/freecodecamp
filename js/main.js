@@ -1,12 +1,33 @@
 var result;
-result = mutation(["hello", "2"]);
+result = bouncer([7, "ate", "", false, 9]);
+
+/*Remove all falsy values from an array.
+Falsy values in JavaScript are false, null, 0, "", undefined, and NaN*/
+function bouncer(arr) {
+var falseValue = [false, null, 0, "", undefined, NaN]; 
+  for (var i = 0; i < arr.length; i++) {    
+      var index = arr.indexOf(falseValue);
+      arr.splice(index, 1);
+  }
+  return arr;
+} // => returning [7, "ate"] not good !
 
 /*Return true if the string in the first element of the array contains all of the letters 
 of the string in the second element of the array.*/
-
 function mutation(arr) {
-  var n = arr[0].indexOf(arr[1]);
-  return n;
+  var compArr = arr[1].toLowerCase().split('');
+  var compToArr = arr[0].toLowerCase().split('');
+  var answer = true;
+
+  for (var i = 0; i < compArr.length; i++) {
+    var index = compToArr.indexOf(compArr[i]);
+    if (index > -1) {
+      compToArr.splice(index, 1);
+    } else {
+      answer = false;
+    }
+  };
+  return answer;
 }
 
 /* Return the remaining elements of an array after chopping off n elements from the head.*/
