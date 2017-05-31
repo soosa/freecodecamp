@@ -1,8 +1,18 @@
 var result;
 result = bouncer([7, "ate", "", false, 9]);
 var results = [
+  reverseString("hello"),
+  factorialize(5),
+  palindrome("eye"),
+  findLongestWord("The quick brown fox jumped over the lazy dog"),
+  titleCase("I'm a little tea pot"),
+  largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]),
+  confirmEnding("Bastian", "n"),
+  repeatStringNumTimes("abc", 3),
+  truncateString("A-tisket a-tasket A green and yellow basket", 11),
+  chunkArrayInGroups(["a", "b", "c", "d"], 2),
   bouncer([7, "ate", "", false, 9]),
-  mutation(["hello", "lOlh"])
+  mutation(["hello", "lOlh"]) 
 ]
 
 /*Remove all falsy values from an array.
@@ -34,6 +44,17 @@ function mutation(arr) {
 function slasher(arr, howMany) {
   arr.splice(0, howMany);
   return arr;
+}
+
+/*Return an array consisting of the largest number from each provided sub-array. 
+For simplicity, the provided array will contain exactly 4 sub-arrays*/
+function largestOfFour(arr) {
+  var newArray = [];
+  for (var i = 0; i < arr.length; i++) {
+      arr[i].sort(function(a,b){return b-a;});
+      newArray[i] = arr[i].shift();
+  }
+  return newArray;
 }
 
 /*a function that splits an array (first argument) into groups the length of size 
