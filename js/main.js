@@ -1,19 +1,26 @@
 var result;
-result = bouncer([1, null, NaN, 2, undefined]);
+result = bouncer([false, null, 0, NaN, undefined, ""]);
 
 /*Remove all falsy values from an array.
 Falsy values in JavaScript are false, null, 0, "", undefined, and NaN*/
 function bouncer(arr) {
   var falseValue = [false, null, 0, "", undefined, NaN];
   var arrCounter = arr.length;
-    for (var i = 0; i < arrCounter; i++) {
-      var index = arr.indexOf(falseValue[i]);
+  var arrCopy = arr;
+
+  for (var i = 0; i < arrCounter; i++) {
+   //console.log(arr);
+    for (var j = 0; j< falseValue.length; j++){
+      var index = arr.indexOf(falseValue[j]);
       if (index > -1){        
         arr.splice(index, 1); 
-      }     
+      }
     }
-  return arr;
-} //NaN not filtered still not good
+    if (arr[i] !== arrCopy[i]){
+      arr.splice(i, 1); 
+    } //had to put this at the end otherwise NaN stayed in
+  }  return arr;
+} 
 
 /*Return true if the string in the first element of the array contains all of the letters 
 of the string in the second element of the array.*/
