@@ -12,8 +12,16 @@ var results = [
   bouncer([7, "ate", "", false, 9]),
   bouncer([false, null, 0, NaN, undefined, ""]),
   mutation(["hello", "lOlh"]),
-  destroyer([3, 5, 1, 2, 2], 2, 3, 5)
-]
+  destroyer([3, 5, 1, 2, 2], 2, 3, 5),
+  getIndexToIns([40, 60], 50)
+];
+
+/*Return the lowest index at which a value (second argument) should be inserted into 
+an array (first argument) once it has been sorted. The returned value should be a number.*/
+function getIndexToIns(arr, num) {
+  // Find my place in this sorted array.
+  return num;
+}
 
 /*You will be provided with an initial array (the first argument in the destroyer function),
 followed by one or more arguments. 
