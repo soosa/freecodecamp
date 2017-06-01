@@ -1,5 +1,3 @@
-var result;
-result = bouncer([7, "ate", "", false, 9]);
 var results = [
   reverseString("hello"),
   factorialize(5),
@@ -12,15 +10,47 @@ var results = [
   truncateString("A-tisket a-tasket A green and yellow basket", 11),
   chunkArrayInGroups(["a", "b", "c", "d"], 2),
   bouncer([7, "ate", "", false, 9]),
-  mutation(["hello", "lOlh"]) 
+  bouncer([false, null, 0, NaN, undefined, ""]),
+  mutation(["hello", "lOlh"]),
+  destroyer([3, 5, 1, 2, 2], 2, 3, 5)
 ]
+
+/*You will be provided with an initial array (the first argument in the destroyer function),
+followed by one or more arguments. 
+Remove all elements from the initial array that are of the same value as these arguments.*/
+function destroyer(arr) {
+  var args = Array.prototype.slice.call(arguments);
+  var arrayCounter = args[0].length;
+  
+  for (var i = 0; i < arrayCounter; i++) {
+    for (var j = 1; j < args.length; j++) {
+      var index = args[0].indexOf(args[j]);
+      if (index > -1){        
+        args[0].splice(index, 1); 
+      }
+    }
+  } return args[0];
+}
 
 /*Remove all falsy values from an array.
 Falsy values in JavaScript are false, null, 0, "", undefined, and NaN*/
 function bouncer(arr) {
-  // Don't show a false ID to this bouncer.
-  return arr;
-}
+  var falseValue = [false, null, 0, "", undefined, NaN];
+  var arrCounter = arr.length;
+  var arrCopy = arr;
+
+  for (var i = 0; i < arrCounter; i++) {
+    for (var j = 0; j< falseValue.length; j++){
+      var index = arr.indexOf(falseValue[j]);
+      if (index > -1){        
+        arr.splice(index, 1); 
+      }
+    }
+    if (arr[i] !== arrCopy[i]){
+      arr.splice(i, 1); 
+    } //had to put this at the end otherwise NaN stayed in
+  }  return arr;
+} 
 
 /*Return true if the string in the first element of the array contains all of the letters 
 of the string in the second element of the array.*/
@@ -179,5 +209,3 @@ function reverseString(str) {
   return array;
 }
 
-document.getElementById('result').innerHTML = "<p>" + result + "</p>";
-console.log(result);
