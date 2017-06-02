@@ -1,11 +1,21 @@
 var result;
-result = getIndexToIns([40, 60, 30], 50);
+result = rot13("LBH QVQ VG!");
 
-function getIndexToIns(arr, num) {
-  arr.push(num);
-  arr.sort(function(a,b){ return a-b; });
-  var index = arr.indexOf(num);
-  return index;
+function rot13(str) { // LBH QVQ VG!
+  var controlAbc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  var encryptedAbc = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  controlAbc = controlAbc.split('');
+  encryptedAbc = encryptedAbc.split('');
+  var strArray = str.split('');
+
+  for (var i = 0; i < strArray.length; i++) {
+    var index = encryptedAbc.indexOf(strArray[i]);
+    if (index > -1){        
+      strArray[i] = controlAbc[index];
+    }
+  }
+  strArray = strArray.join('');
+  return strArray;
 }
 
 document.getElementById('result').innerHTML = "<p>" + result + "</p>";

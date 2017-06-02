@@ -13,8 +13,27 @@ var results = [
   bouncer([false, null, 0, NaN, undefined, ""]),
   mutation(["hello", "lOlh"]),
   destroyer([3, 5, 1, 2, 2], 2, 3, 5),
-  getIndexToIns([40, 60], 50)
+  getIndexToIns([40, 60], 50),
+  rot13("SERR PBQR PNZC, LBH QVQ VG!"),
 ];
+
+/*Write a function which takes a ROT13 encoded string as input and returns a decoded string.*/
+function rot13(str) { 
+  var controlAbc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  var encryptedAbc = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  controlAbc = controlAbc.split('');
+  encryptedAbc = encryptedAbc.split('');
+  var strArray = str.split('');
+
+  for (var i = 0; i < strArray.length; i++) {
+    var index = encryptedAbc.indexOf(strArray[i]);
+    if (index > -1){        
+      strArray[i] = controlAbc[index];
+    }
+  }
+  strArray = strArray.join('');
+  return strArray;
+}
 
 /*Return the lowest index at which a value (second argument) should be inserted into 
 an array (first argument) once it has been sorted. The returned value should be a number.*/
