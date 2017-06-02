@@ -1,22 +1,34 @@
 var result;
-result = rot13("LBH QVQ VG!");
+//result = rot13("LBH QVQ VG!");
 
-function rot13(str) { // LBH QVQ VG!
-  var controlAbc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-  var encryptedAbc = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
-  controlAbc = controlAbc.split('');
-  encryptedAbc = encryptedAbc.split('');
-  var strArray = str.split('');
+  $(document).ready(function() {
 
-  for (var i = 0; i < strArray.length; i++) {
-    var index = encryptedAbc.indexOf(strArray[i]);
-    if (index > -1){        
-      strArray[i] = controlAbc[index];
-    }
-  }
-  strArray = strArray.join('');
-  return strArray;
-}
+    $("#getMessage").on("click", function() {
+      $.get("http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=?", function(jsonp) {
 
-document.getElementById('result').innerHTML = "<p>" + result + "</p>";
+
+        var html = "";
+        
+        jsonp.forEach(function(val) {
+          var keys = Object.keys(val);
+          html += "<div class = 'cat'>";
+          keys.forEach(function(key) {
+            html += "<strong>" + key + "</strong>: " + val[key] + "<br>";
+          });
+          html += "</div><br>";
+        });
+
+        $(".message").html(html);
+
+      });
+    });
+  });
+
+
+
+$.getJSON("http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&callback=", function(a) {
+  ocument.getElementById('result').innerHTML = "<p>" + a[0].content + "</p>";
+});
+
+//document.getElementById('result').innerHTML = "<p>" + result + "</p>";
 console.log(result);
