@@ -19,8 +19,10 @@ var results = [
 /*Return the lowest index at which a value (second argument) should be inserted into 
 an array (first argument) once it has been sorted. The returned value should be a number.*/
 function getIndexToIns(arr, num) {
-  // Find my place in this sorted array.
-  return num;
+  arr.push(num);
+  arr.sort(function(a,b){ return a-b; });
+  var index = arr.indexOf(num);
+  return index;
 }
 
 /*You will be provided with an initial array (the first argument in the destroyer function),

@@ -1,10 +1,11 @@
 var result;
-result = getIndexToIns([40, 60], 50);
+result = getIndexToIns([40, 60, 30], 50);
 
 function getIndexToIns(arr, num) {
-  var args = Array.prototype.slice.call(arguments);
-  //return num;
-  //not finished
+  arr.push(num);
+  arr.sort(function(a,b){ return a-b; });
+  var index = arr.indexOf(num);
+  return index;
 }
 
 document.getElementById('result').innerHTML = "<p>" + result + "</p>";
