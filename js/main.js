@@ -1,34 +1,34 @@
-var result;
-//result = rot13("LBH QVQ VG!");
+function showQuote(){
+  $.ajax({
+    url: "https://quotes.rest/qod.json",
+    headers:{ 
+      "X-Mashape-Key": "OivH71yd3tmshl9YKzFH7BTzBVRQp1RaKLajsnafgL2aPsfP9V",
+      Accept: "application/json",
+      "Content-Type": "application/json"
+    }, 
+    crossDomain: true,
+    type: "GET",
+    dataType: "json",
+    data: {},
+    success: function(data){ 
+      var quote = data.contents.quotes[0].quote;
+      var author = data.contents.quotes[0].author;
+        document.getElementById('quote').innerHTML = ' "' + quote + '"';
+        document.getElementById('author').innerHTML = 'by '+ author;
 
-  $(document).ready(function() {
+        var tweetTxt = quote;
+        if (tweetTxt.length >140){
+          tweetTxt = tweetTxt.slice(0,137).concat("...");
+        } 
+        var tweetURL = '//twitter.com/intent/tweet?status='+tweetTxt;
+        $('.content__quote__tweet').attr('href',tweetURL);
 
-    $("#getMessage").on("click", function() {
-      $.get("http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=?", function(jsonp) {
-
-
-        var html = "";
-        
-        jsonp.forEach(function(val) {
-          var keys = Object.keys(val);
-          html += "<div class = 'cat'>";
-          keys.forEach(function(key) {
-            html += "<strong>" + key + "</strong>: " + val[key] + "<br>";
-          });
-          html += "</div><br>";
-        });
-
-        $(".message").html(html);
-
-      });
-    });
+        $('#showBtn').fadeToggle( "fast", "linear" );
+        $('.content__quote').show("slow");
+        $('body').css({"background-color":"#267871"}, 'slow');
+      },
+      error: function () {
+          document.getElementById('error').innerHTML = 'error' + error;
+      }
   });
-
-
-
-$.getJSON("http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&callback=", function(a) {
-  ocument.getElementById('result').innerHTML = "<p>" + a[0].content + "</p>";
-});
-
-//document.getElementById('result').innerHTML = "<p>" + result + "</p>";
-console.log(result);
+}

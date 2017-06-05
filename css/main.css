@@ -9,7 +9,32 @@
 
 
 
+body {
+  background-color: #135058;
+  color: #ebebeb;
+}
+.content__header h1 {
+  margin-bottom: 20px;
+}
+.content__quote {
 
+}
+.content__quote__tweet img {
+  display: inline-block;
+  max-width: 30px;
+}
+
+a {
+  color: #ebebeb;
+}
+
+a:hover {
+  color: white;
+}
+
+a:visited {
+  color: white;
+}
 
 
 
