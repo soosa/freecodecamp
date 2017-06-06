@@ -1,34 +1,56 @@
-var result;
-//result = rot13("LBH QVQ VG!");
 
-  $(document).ready(function() {
+var quote = [];
+var author = [];
+var tweetTxt,
+  tweetURL,
+  quoteCounter;
 
-    $("#getMessage").on("click", function() {
-      $.get("http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=jsonp&jsonp=?", function(jsonp) {
+function showQuote(){
+  
+  if (quote.length < 1){
+    getData(quote, author);
+    document.getElementById('quoteBtn').innerText = "new";
+    $('.content__quote').show("slow");
+    $('body').css({"background-color":"#780206"}, 'slow'); 
+  } else {
+    quoteCounter = Math.floor(Math.random()*10);
+    updateDOM(quote, author, quoteCounter);
+  }
+}
 
-
-        var html = "";
-        
-        jsonp.forEach(function(val) {
-          var keys = Object.keys(val);
-          html += "<div class = 'cat'>";
-          keys.forEach(function(key) {
-            html += "<strong>" + key + "</strong>: " + val[key] + "<br>";
-          });
-          html += "</div><br>";
-        });
-
-        $(".message").html(html);
-
-      });
-    });
+var getData = function(){
+  $.ajax({
+    url: "https://andruxnet-random-famous-quotes.p.mashape.com/?cat=famous&count=10",
+    headers: { "X-Mashape-Key": "VGpUtDzNLjmshP5NB6yS9QktRgszp1JFj83jsnbp9J50GlFiKo",
+                Accept: "application/json",
+               "Content-Type": "application/x-www-form-urlencoded"
+    },
+    type: "GET",
+    dataType: "json",
+    data: {},
+    success: function(data){
+      quoteCounter = Math.floor(Math.random()*10);
+        for (var i = 0; i < data.length; i++) {
+          quote.push(data[i].quote);
+          author.push(data[i].author);
+        }
+        updateDOM(quote, author, quoteCounter);
+    },
+    error: function () {
+      document.getElementById('error').innerHTML = 'error';
+    }
   });
+};
+
+var updateDOM = function(quote, author, quoteCounter){
+  tweetTxt = quote[quoteCounter];
+  if (quote.length > 140){
+    tweetTxt = tweetTxt.slice(0,137).concat("...");
+  } 
+  tweetURL = 'https://twitter.com/intent/tweet?status='+tweetTxt;
+  $('.content__quote__tweet').attr('href',tweetURL);
+  document.getElementById('quote').innerHTML = ' "' + quote[quoteCounter] + '"';
+  document.getElementById('author').innerHTML = 'by '+ author[quoteCounter];
+};
 
 
-
-$.getJSON("http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&callback=", function(a) {
-  ocument.getElementById('result').innerHTML = "<p>" + a[0].content + "</p>";
-});
-
-//document.getElementById('result').innerHTML = "<p>" + result + "</p>";
-console.log(result);

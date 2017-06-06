@@ -67,8 +67,31 @@
         <div class="col-sm-12">
           <h2>The correct answer is:</h2>
           <div id="result"></div>
-         
+           <button id="getMessage" class="btn" type="submit" onclick="UserAction()"> click </button>
         </div>
+
+<!-- start quote -->
+<div class="content text-center">
+<div class="content__header">
+<h1><span class="glyphicon glyphicon-bullhorn" aria-hidden="true"> </span> Quote for the day</h1>
+   <button id="quoteBtn" onclick="showQuote()" type="button" class="btn btn-default"> show </button>
+  </div>  
+ <div id="result" class="content__quote">  
+  <p> <span id="quote">
+    </span></p>
+    
+   <p> <i id="author">
+    </i></p>
+   <a class="content__quote__tweet" href="#" target="blank"> 
+     <img src="http://www.iconsdb.com/icons/preview/white/twitter-xxl.png" alt="twitter"> 
+<span class="icon-twitter" aria-label="twitter"> </span>
+     tweet
+    </a>
+      <p> <span id="error">
+    </span></p>
+ </div>
+</div>
+<!-- end quote -->
       </div>
 
       <hr>
