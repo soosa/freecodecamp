@@ -4,8 +4,11 @@
    Author's custom styles
    ========================================================================== */
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/master
 body {
   background-color: #135058;
   color: #ebebeb;
@@ -14,12 +17,17 @@ body {
   margin-bottom: 20px;
 }
 .content__quote {
+<<<<<<< HEAD
  display: none;
+=======
+
+>>>>>>> origin/master
 }
 .content__quote__tweet img {
   display: inline-block;
   max-width: 30px;
 }
+<<<<<<< HEAD
 a {
   color: #ebebeb;
 }
@@ -44,6 +52,20 @@ a:focus{
 
 
 
+=======
+
+a {
+  color: #ebebeb;
+}
+
+a:hover {
+  color: white;
+}
+
+a:visited {
+  color: white;
+}
+>>>>>>> origin/master
 
 
 
