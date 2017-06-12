@@ -4,7 +4,12 @@ var results = [
   palindrome("eye"),
   findLongestWord("The quick brown fox jumped over the lazy dog"),
   titleCase("I'm a little tea pot"),
-  largestOfFour([[4, 5, 1, 3], [13, 27, 18, 26], [32, 35, 37, 39], [1000, 1001, 857, 1]]),
+  largestOfFour([
+    [4, 5, 1, 3],
+    [13, 27, 18, 26],
+    [32, 35, 37, 39],
+    [1000, 1001, 857, 1]
+  ]),
   confirmEnding("Bastian", "n"),
   repeatStringNumTimes("abc", 3),
   truncateString("A-tisket a-tasket A green and yellow basket", 11),
@@ -14,24 +19,24 @@ var results = [
   mutation(["hello", "lOlh"]),
   destroyer([3, 5, 1, 2, 2], 2, 3, 5),
   getIndexToIns([40, 60], 50),
-  rot13("SERR PBQR PNZC, LBH QVQ VG!"),
+  rot13("SERR PBQR PNZC, LBH QVQ VG!")
 ];
 
 /*Write a function which takes a ROT13 encoded string as input and returns a decoded string.*/
-function rot13(str) { 
-  var controlAbc = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-  var encryptedAbc = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
-  controlAbc = controlAbc.split('');
-  encryptedAbc = encryptedAbc.split('');
-  var strArray = str.split('');
+function rot13(str) {
+  var controlAbc = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  var encryptedAbc = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+  controlAbc = controlAbc.split("");
+  encryptedAbc = encryptedAbc.split("");
+  var strArray = str.split("");
 
   for (var i = 0; i < strArray.length; i++) {
     var index = encryptedAbc.indexOf(strArray[i]);
-    if (index > -1){        
+    if (index > -1) {
       strArray[i] = controlAbc[index];
     }
   }
-  strArray = strArray.join('');
+  strArray = strArray.join("");
   return strArray;
 }
 
@@ -39,7 +44,9 @@ function rot13(str) {
 an array (first argument) once it has been sorted. The returned value should be a number.*/
 function getIndexToIns(arr, num) {
   arr.push(num);
-  arr.sort(function(a,b){ return a-b; });
+  arr.sort(function(a, b) {
+    return a - b;
+  });
   var index = arr.indexOf(num);
   return index;
 }
@@ -50,15 +57,16 @@ Remove all elements from the initial array that are of the same value as these a
 function destroyer(arr) {
   var args = Array.prototype.slice.call(arguments);
   var arrayCounter = args[0].length;
-  
+
   for (var i = 0; i < arrayCounter; i++) {
     for (var j = 1; j < args.length; j++) {
       var index = args[0].indexOf(args[j]);
-      if (index > -1){        
-        args[0].splice(index, 1); 
+      if (index > -1) {
+        args[0].splice(index, 1);
       }
     }
-  } return args[0];
+  }
+  return args[0];
 }
 
 /*Remove all falsy values from an array.
@@ -69,23 +77,24 @@ function bouncer(arr) {
   var arrCopy = arr;
 
   for (var i = 0; i < arrCounter; i++) {
-    for (var j = 0; j< falseValue.length; j++){
+    for (var j = 0; j < falseValue.length; j++) {
       var index = arr.indexOf(falseValue[j]);
-      if (index > -1){        
-        arr.splice(index, 1); 
+      if (index > -1) {
+        arr.splice(index, 1);
       }
     }
-    if (arr[i] !== arrCopy[i]){
-      arr.splice(i, 1); 
+    if (arr[i] !== arrCopy[i]) {
+      arr.splice(i, 1);
     } //had to put this at the end otherwise NaN stayed in
-  }  return arr;
-} 
+  }
+  return arr;
+}
 
 /*Return true if the string in the first element of the array contains all of the letters 
 of the string in the second element of the array.*/
 function mutation(arr) {
-  var compArr = arr[1].toLowerCase().split('');
-  var compToArr = arr[0].toLowerCase().split('');
+  var compArr = arr[1].toLowerCase().split("");
+  var compToArr = arr[0].toLowerCase().split("");
   var answer = true;
 
   for (var i = 0; i < compArr.length; i++) {
@@ -95,7 +104,7 @@ function mutation(arr) {
     } else {
       answer = false;
     }
-  };
+  }
   return answer;
 }
 
@@ -110,8 +119,10 @@ For simplicity, the provided array will contain exactly 4 sub-arrays*/
 function largestOfFour(arr) {
   var newArray = [];
   for (var i = 0; i < arr.length; i++) {
-      arr[i].sort(function(a,b){return b-a;});
-      newArray[i] = arr[i].shift();
+    arr[i].sort(function(a, b) {
+      return b - a;
+    });
+    newArray[i] = arr[i].shift();
   }
   return newArray;
 }
@@ -125,9 +136,10 @@ function chunkArrayInGroups(arr, size) {
   loopCounter = arr.length / size;
   loopCounter = Math.ceil(loopCounter);
 
-  for (var i = 0, j = 0; i < loopCounter; i++, j += size){
-    newArr.push(arr.slice(j, j+size));
-  } return newArr;
+  for (var i = 0, j = 0; i < loopCounter; i++, j += size) {
+    newArr.push(arr.slice(j, j + size));
+  }
+  return newArr;
 }
 
 /*Truncate a string (first argument) if it is longer than the given maximum 
@@ -140,23 +152,23 @@ function truncateString(str, num) {
     return str;
   } else {
     if (sliceString.length <= 3) {
-            newString = str.slice(0, num).concat("...");
+      newString = str.slice(0, num).concat("...");
       return newString;
     } else {
-      newString = str.slice(0, num-3).concat("...");
+      newString = str.slice(0, num - 3).concat("...");
       return newString;
-    }   
+    }
   }
 }
 
 /*Repeat a given string (first argument) num times (second argument). 
 Return an empty string if num is not a positive number.*/
 function repeatStringNumTimes(str, num) {
-   var concatStr = str;
-   if (num > 0){
-  	for (var i = num - 1; i >= 0; i--) {
-  		str.concat(str);
-  	}
+  var concatStr = str;
+  if (num > 0) {
+    for (var i = num - 1; i >= 0; i--) {
+      str.concat(str);
+    }
   }
   return concatStr;
 }
@@ -164,70 +176,72 @@ function repeatStringNumTimes(str, num) {
 /*Return the length of the longest word in the provided sentence.*/
 function findLongestWord(str) {
   var newArray = [];
-  str = str.split(' ');
+  str = str.split(" ");
 
   if (str.length >= 1) {
     for (var i = 0; i < str.length; i++) {
       newArray.push(str[i].length);
-  }
-  newArray.sort(function(a,b){return b-a;});
-  return newArray.shift();
+    }
+    newArray.sort(function(a, b) {
+      return b - a;
+    });
+    return newArray.shift();
   }
 }
 
 /*Check if a string (first argument, str) 
 ends with the given target string (second argument, target).*/
 function confirmEnding(str, target) {
-  var targetLength = target.length; 
+  var targetLength = target.length;
 
-  if ( str.substr(-targetLength) == target){
-  	return true;
+  if (str.substr(-targetLength) == target) {
+    return true;
   } else {
     return false;
-  }  
+  }
 }
 
 /*Return true if the given string is a palindrome. Otherwise, return false.*/
 function palindrome(str) {
-  var regExp = /[^a-z0-9]/ig;
+  var regExp = /[^a-z0-9]/gi;
   var newStr = str.replace(regExp, "").toLowerCase();
-  var newStrReversed = newStr.split('').reverse().join('').toLowerCase();
-  
+  var newStrReversed = newStr.split("").reverse().join("").toLowerCase();
+
   if (newStr === newStrReversed) {
-  	return true;
+    return true;
   } else {
-  	return false;
+    return false;
   }
 }
 
 /*Return the factorial of the provided integer.*/
 function factorialize(num) {
-  if (num <= 1){
+  if (num <= 1) {
     num = 1;
   } else {
-    for (var i = num - 1; i >= 1; i-- ){ 
+    for (var i = num - 1; i >= 1; i--) {
       num *= i;
-    }  
+    }
   }
   return num;
 }
 
 /*Return the provided string with the first letter of each 
 word capitalized. Make sure the rest of the word is in lower case.*/
-function titleCase(str){
+function titleCase(str) {
   var newArray = [];
   var joinArray = [];
-    var array = str.split(' ');
+  var array = str.split(" ");
 
-    if (array.length > 0) {
-      for (var i = 0; i < array.length; i++) {
-        newArray = array[i].toLowerCase().split('');
-        newArray[0] = newArray[0].toUpperCase();
-        newArray = newArray.join('');
-        joinArray.push(newArray);
-      }
-      return joinArray.join(' ');
+  if (array.length > 0) {
+    for (var i = 0; i < array.length; i++) {
+      newArray = array[i].toLowerCase().split("");
+      newArray[0] = newArray[0].toUpperCase();
+      newArray = newArray.join("");
+      joinArray.push(newArray);
     }
+    return joinArray.join(" ");
+  }
 }
 
 /*Reverse the provided string.*/
@@ -237,4 +251,3 @@ function reverseString(str) {
   array = array.join("");
   return array;
 }
-
