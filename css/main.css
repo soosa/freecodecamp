@@ -7,8 +7,12 @@
 
 body {
   background-color: #135058;
+}
+
+.result {
   color: #ebebeb;
 }
+
 .content__header h1 {
   margin-bottom: 20px;
 }
@@ -47,6 +51,12 @@ a:hover {
 }
 a:visited {
   color: white;
+}
+
+.demo {
+  border: 1px solid #ccc;
+  margin: 1em;
+  padding: 1em;
 }
 
 

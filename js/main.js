@@ -1,32 +1,41 @@
+const color = [
+ 'background: green',
+ 'color: white',
+ 'display: block'
+].join(';');
 
-function diffArray(arr1, arr2) {
-  function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
-  }
-  var newArray = arr1.concat(arr2);
-  newArray = newArray.filter(onlyUnique);
-  var newArrCopy1 = newArray.slice();
-  var newArrCopy2 = newArray.slice();
-  var index;
+console.log('%c console ready ', color);
 
-  function spliceArray(i, newArrayCopy, arg) {
-    index = newArrayCopy.indexOf(arg[i]);
-    if (index > -1) {
-      newArrayCopy.splice(index, 1);
-    }
-  }
+//js is working with strings
+const jsContainer = document.getElementById("js");
+const reactContainer = document.getElementById("react");
 
-  for (var i = 0; i < arr1.length; i++) {
-    spliceArray(i, newArrCopy1, arr1);
-  }
+const render = () => {
+  jsContainer.innerHTML = `
+    <div class="demo">
+      Hello JS
+      <input />
+      <p>${new Date()}</p>
+    </div>
+  `;
 
-  for (var j = 0; j < arr2.length; j++) {
-    spliceArray(j, newArrCopy2, arr2);
-  }
-
-  return newArrCopy1.concat(newArrCopy2);
+//react is working with objects
+ReactDOM.render( //every HTML element will be represented with a JavaScript object using a React.createElement call
+  React.createElement(
+    "div",
+    { className: "demo" },
+      "Hello React",
+      React.createElement("input"),
+      React.createElement(
+        "p",
+        null,
+        new Date().toString()
+      )
+    ),
+  reactContainer
+);
 }
 
+setInterval(render, 1000);
+/*Although the whole React rendering code is within our ticking timer, React is changing only the timestamp paragraph and not the whole DOM node. */
 
-var result = diffArray([1, 2, 3, 5], [1, 2, 3, 4]);
-console.log(result);
