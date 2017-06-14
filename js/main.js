@@ -1,32 +1,18 @@
+/*Make a function that looks through an array of objects (first argument)
+and returns an array of all objects that have matching property and value 
+pairs (second argument). Each property and value pair of the source object has to be 
+present in the object from the collection if it is to be included in the returned array.*/
 
-function diffArray(arr1, arr2) {
-  function onlyUnique(value, index, self) {
-    return self.indexOf(value) === index;
-  }
-  var newArray = arr1.concat(arr2);
-  newArray = newArray.filter(onlyUnique);
-  var newArrCopy1 = newArray.slice();
-  var newArrCopy2 = newArray.slice();
-  var index;
 
-  function spliceArray(i, newArrayCopy, arg) {
-    index = newArrayCopy.indexOf(arg[i]);
-    if (index > -1) {
-      newArrayCopy.splice(index, 1);
-    }
-  }
-
-  for (var i = 0; i < arr1.length; i++) {
-    spliceArray(i, newArrCopy1, arr1);
-  }
-
-  for (var j = 0; j < arr2.length; j++) {
-    spliceArray(j, newArrCopy2, arr2);
-  }
-
-  return newArrCopy1.concat(newArrCopy2);
+function whatIsInAName(collection, source) {
+  // What's in a name?
+  var arr = [];
+  // Only change code below this line
+  
+  
+  // Only change code above this line
+  return arr;
 }
 
-
-var result = diffArray([1, 2, 3, 5], [1, 2, 3, 4]);
-console.log(result);
+var result = whatIsInAName([{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }], { "a": 1 }) ;
+console.log(result); //should return [{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }]

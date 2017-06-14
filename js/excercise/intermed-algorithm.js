@@ -1,7 +1,8 @@
 var data = [
   sumAll([1, 4]),
   diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]),
-  convertToRoman(36)
+  convertToRoman(36),
+  whatIsInAName([{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }], { "a": 1 })
 ];
 
 /*Return the sum of two arguments (numbers) and all numbers between them */
