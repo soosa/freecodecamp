@@ -8,37 +8,34 @@ function whatIsInAName(collection, source) {
   // What's in a name?
   var arr = [];
   // Only change code below this line
-  arr = Object.keys(collection[0]);
-  
+
+  var sourceSize = Object.keys(source).length;
+  var arrKey = Object.keys(source);
+
+  for (var x = 0; x < collection.length; x++) {
+  	for (var y = 0; y < sourceSize; y++) {
+       var sourceKeys = Object.keys(source);
+       console.log(source[Object.keys(source)]);
+
+	  	// let collectionKeys = Object.keys(collection[i]);
+	  	// if ( collectionKeys[0]  === Object.keys(source)[j] && collection[i][Object.keys(source)] === source[Object.keys(source)] ){
+	  	// 	arr.push(Object.keys(collection[i]));
+	  	// }
+	}
+  }  
+  //console.log(Object.keys(collection[0]));
   // Only change code above this line
   return arr;
-
 }
 
-var result = whatIsInAName([{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }], { "a": 1 }) ;
-console.log(result); //should return [{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }]
 
+//var result = whatIsInAName([{ "a": 1 }, { "a": 1 },{"b": 2}, { "a": 1, "b": 2 }], { "a": 1 }) ;
+//var result = whatIsInAName([{ "a": 1, "b": 2 }, { "a": 1 }, { "a": 1, "b": 2, "c": 2 }], { "a": 1, "b": 2 });
+var result = whatIsInAName([
+	{ first: "Romeo", last: "Montague" }, 
+	{ first: "Mercutio", last: null }, 
+	{ first: "Tybalt", last: "Capulet" }
+	],
+	{ last: "Capulet",first: "Tybalt" });
+console.log("result: "+result); //should return [{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }]
 
-function lookUpProfile(firstName, prop){
-// Only change code below this line
- var answer;
-
-  for (var i = 0; i < contacts.length; i++ ){
-
-    if (contacts[i].firstName == firstName) {
-        if (contacts[i].hasOwnProperty(prop)){
-           answer = contacts[i][prop];
-           return answer;
-        }else {
-          answer = "No such property";
-          return answer;
-        }
-
-    }else {
-        answer = "No such contact";
-    }    
-  }
-  return answer;
-  
-// Only change code above this line
-}
