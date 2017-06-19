@@ -3,7 +3,7 @@ var data = [
   diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]),
   convertToRoman(36),
   whatIsInAName([{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }], { "a": 1 }),
-  myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped")
+  myReplace("Let us get back to more Coding", "Coding", "algorithms")
 ];
 
 /*1. Return the sum of two arguments (numbers) and all numbers between them */
@@ -155,4 +155,18 @@ function whatIsInAName(collection, source) {
     }
   }
   return arr;
+}
+
+/*5. Perform a search and replace on the sentence using the arguments provided and return the new sentence.*/
+function myReplace(str, before, after) {    
+  after = after.split("");
+  if (before[0] === before[0].toUpperCase()) {
+    after[0] = after[0].toUpperCase();
+  } else if (before[0] === before[0].toLowerCase()) {
+    after[0] = after[0].toLowerCase();
+  }
+  after = after.join("");
+  str = str.replace(before, after);
+
+  return str;
 }
