@@ -5,7 +5,7 @@ var data = [
   whatIsInAName([{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }], { "a": 1 })
 ];
 
-/*Return the sum of two arguments (numbers) and all numbers between them */
+/*1. Return the sum of two arguments (numbers) and all numbers between them */
 function sumAll(arr) {
   var minArr = arr.reduce(function(a, b) {
     return Math.min(a, b);
@@ -21,7 +21,7 @@ function sumAll(arr) {
   return sum;
 }
 
-/*Compare two arrays and return a new array with any items only found in 
+/*2. Compare two arrays and return a new array with any items only found in 
 one of the two given arrays, but not both. In other words, return the 
 symmetric difference of the two arrays */
 function diffArray(arr1, arr2) {
@@ -52,7 +52,7 @@ function diffArray(arr1, arr2) {
   return newArrCopy1.concat(newArrCopy2);
 }
 
-/*Convert the given number into a roman numeral */
+/*3. Convert the given number into a roman numeral */
 function convertToRoman(num) {
   var romanNumbers = [
     {
@@ -128,4 +128,33 @@ function convertToRoman(num) {
     toDisplay.push(roman1);
   } 
   return toDisplay.join("");
+}
+
+/*4. Make a function that looks through an array of objects (first argument)
+and returns an array of all objects that have matching property and value 
+pairs (second argument). Each property and value pair of the source object has to be 
+present in the object from the collection if it is to be included in the returned array.*/
+function whatIsInAName(collection, source) {
+  var arr = [];
+
+  var sourceSize = Object.keys(source).length; 
+  var arraySourceKeys = Object.keys(source);
+
+  for (var x = 0; x < collection.length; x++) {
+    let arrayCheck = [];
+    for (var y = 0; y < sourceSize; y++) {
+
+      if (collection[x][arraySourceKeys[y]] === source[arraySourceKeys[y]]) { //checks is collection and source have same prop/value pair
+          arrayCheck.push(source[arraySourceKeys[y]]); //counting the number of matces
+
+          if (arrayCheck.length === sourceSize ) { //check if every source prop-value is simultaniusly present in collection
+            arr.push(collection[x]);
+          }     
+         }
+    }
+  }
+  return arr;
+}
+
+  return arr;
 }
