@@ -2,7 +2,8 @@ var data = [
   sumAll([1, 4]),
   diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]),
   convertToRoman(36),
-  whatIsInAName([{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }], { "a": 1 })
+  whatIsInAName([{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }], { "a": 1 }),
+  myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped")
 ];
 
 /*1. Return the sum of two arguments (numbers) and all numbers between them */
@@ -153,8 +154,5 @@ function whatIsInAName(collection, source) {
          }
     }
   }
-  return arr;
-}
-
   return arr;
 }
