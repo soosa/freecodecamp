@@ -88,6 +88,9 @@ of the preceding expression. When m is omitted, it's treated as ∞
 \W = [^A-Za-z0-9_] - Matches any non-word character % &
 */
 
+//The exec() method executes a search for a match in a specified string. 
+var result = re.exec('The Quick Brown Fox Jumps Over The Lazy Dog');
+console.log("result: -1 "+result[0]+" -2 "+result[1]+" -3 "+ result[2]+" --4 "+ result[3]);
 
 
 
