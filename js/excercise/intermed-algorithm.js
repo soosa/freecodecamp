@@ -3,7 +3,8 @@ var data = [
   diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]),
   convertToRoman(36),
   whatIsInAName([{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }], { "a": 1 }),
-  myReplace("Let us get back to more Coding", "Coding", "algorithms")
+  myReplace("Let us get back to more Coding", "Coding", "algorithms"),
+  translatePigLatin("consonant")
 ];
 
 /*1. Return the sum of two arguments (numbers) and all numbers between them */
@@ -167,6 +168,23 @@ function myReplace(str, before, after) {
   }
   after = after.join("");
   str = str.replace(before, after);
+
+  return str;
+}
+
+/*6. Translate the provided string to pig latin.*/
+function translatePigLatin(str) {
+  var regex = /^(.*?)[a,e,i,o,u]/;
+  var beforeVowel = regex.exec(str);
+  str = str.split("");
+  str.splice(0, beforeVowel[1].length);
+
+  if (beforeVowel[1].length > 0){
+    str = str.concat(beforeVowel[1] + "ay");
+  } else {
+    str = str.concat(beforeVowel[1] + "way");
+  }
+  str = str.join("");
 
   return str;
 }

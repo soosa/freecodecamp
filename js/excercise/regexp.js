@@ -89,7 +89,9 @@ of the preceding expression. When m is omitted, it's treated as ∞
 */
 
 //The exec() method executes a search for a match in a specified string. 
+var re = /quick\s(brown).+?(jumps)/ig;
 var result = re.exec('The Quick Brown Fox Jumps Over The Lazy Dog');
+
 console.log("result: -1 "+result[0]+" -2 "+result[1]+" -3 "+ result[2]+" --4 "+ result[3]);
 
 
