@@ -94,6 +94,18 @@ var result = re.exec('The Quick Brown Fox Jumps Over The Lazy Dog');
 
 console.log("result: -1 "+result[0]+" -2 "+result[1]+" -3 "+ result[2]+" --4 "+ result[3]);
 
+var myRe = /ab*/g;
+var strTest = 'abbcdefabh';
+var myArray;
+while ((myArray = myRe.exec(strTest)) !== null) {
+  var msg = 'Found ' + myArray[0] + '. ';
+  msg += 'Next match starts at ' + myRe.lastIndex;
+  console.log(msg);  //will output: //Found abb. Next match starts at 3
+ 		                   		   //Found ab. Next match starts at 9
+}
+
+
+
 
 
 
