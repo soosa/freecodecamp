@@ -4,7 +4,8 @@ var data = [
   convertToRoman(36),
   whatIsInAName([{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }], { "a": 1 }),
   myReplace("Let us get back to more Coding", "Coding", "algorithms"),
-  translatePigLatin("consonant")
+  translatePigLatin("consonant"),
+  pairElement("GCTG")
 ];
 
 /*1. Return the sum of two arguments (numbers) and all numbers between them */
@@ -187,4 +188,28 @@ function translatePigLatin(str) {
   str = str.join("");
 
   return str;
+}
+
+/*7. The DNA strand is missing the pairing element. Take each character, get its pair, and return the results as a 2d array.*/
+function pairElement(str) {
+  str = str.split("");
+  var result = [];
+
+  for (var i = 0; i < str.length; i++) {
+    switch (str[i]) {
+      case "T":
+        result[i] = ["T","A"];
+        break;
+      case "A":
+        result[i] = ["A", "T"];
+        break;
+      case "C":
+        result[i] = ["C","G"];
+        break;
+      case "G":
+        result[i] = ["G", "C"];
+        break;
+    }
+  } 
+  return result;
 }
