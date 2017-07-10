@@ -213,3 +213,20 @@ function pairElement(str) {
   } 
   return result;
 }
+
+//Find the missing letter in the passed letter range and return it
+function fearNotLetter(str) {
+    var alphabet = ("abcdefghijklmnopqrstuvwxyz");
+  var first = alphabet.indexOf(str[0]);
+  var strIndex = 0;
+  var missingLetter;
+
+  for (var i = first ; i < str.length ; i++) {
+      if (str[strIndex] === alphabet[i]) {
+          strIndex++;
+      } else {
+          missingLetter = alphabet[i];
+      }
+  }
+  return missingLetter;
+}
