@@ -1,0 +1,50 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn publish
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Mono.framework/Versions/Current/Commands
+
+Yarn version: 
+  0.21.3
+
+Node version: 
+  7.9.0
+
+Platform: 
+  darwin x64
+
+npm manifest: 
+  {
+    "name": "@soosan/npm-excercise",
+    "version": "1.0.0",
+    "description": "npm-excercise",
+    "main": "index.js",
+    "scripts": {
+      "test": "node test.js"
+    },
+    "author": "Anett Soos",
+    "license": "ISC",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/vuk1066/freecodecamp.git"
+    },
+    "bugs": {
+      "url": "https://github.com/vuk1066/freecodecamp/issues"
+    },
+    "homepage": "https://github.com/vuk1066/freecodecamp#readme",
+    "dependencies": {
+      "@linclark/pkg": "^1.0.3"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: connect ECONNREFUSED 127.0.0.1:15443
+      at Object.exports._errnoException (util.js:1050:11)
+      at exports._exceptionWithHostPort (util.js:1073:20)
+      at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1097:14)

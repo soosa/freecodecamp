@@ -1,0 +1,22 @@
+{
+  "name": "@soosan/npm-excercise",
+  "version": "1.0.2",
+  "description": "npm-excercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "Anett Soos",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soosa/freecodecamp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/soosa/freecodecamp/issues"
+  },
+  "homepage": "https://github.com/soosa/freecodecamp#readme",
+  "dependencies": {
+    "@linclark/pkg": "^1.0.3"
+  }
+}
