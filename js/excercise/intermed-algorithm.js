@@ -1,10 +1,14 @@
 var data = [
   sumAll([1, 4]),
   diffArray([1, 2, 3, 5], [1, 2, 3, 4, 5]),
-  convertToRoman(36)
+  convertToRoman(36),
+  whatIsInAName([{ "a": 1 }, { "a": 1 }, { "a": 1, "b": 2 }], { "a": 1 }),
+  myReplace("Let us get back to more Coding", "Coding", "algorithms"),
+  translatePigLatin("consonant"),
+  pairElement("GCTG")
 ];
 
-/*Return the sum of two arguments (numbers) and all numbers between them */
+/*1. Return the sum of two arguments (numbers) and all numbers between them */
 function sumAll(arr) {
   var minArr = arr.reduce(function(a, b) {
     return Math.min(a, b);
@@ -20,7 +24,7 @@ function sumAll(arr) {
   return sum;
 }
 
-/*Compare two arrays and return a new array with any items only found in 
+/*2. Compare two arrays and return a new array with any items only found in 
 one of the two given arrays, but not both. In other words, return the 
 symmetric difference of the two arrays */
 function diffArray(arr1, arr2) {
@@ -51,7 +55,7 @@ function diffArray(arr1, arr2) {
   return newArrCopy1.concat(newArrCopy2);
 }
 
-/*Convert the given number into a roman numeral */
+/*3. Convert the given number into a roman numeral */
 function convertToRoman(num) {
   var romanNumbers = [
     {
@@ -127,4 +131,102 @@ function convertToRoman(num) {
     toDisplay.push(roman1);
   } 
   return toDisplay.join("");
+}
+
+/*4. Make a function that looks through an array of objects (first argument)
+and returns an array of all objects that have matching property and value 
+pairs (second argument). Each property and value pair of the source object has to be 
+present in the object from the collection if it is to be included in the returned array.*/
+function whatIsInAName(collection, source) {
+  var arr = [];
+
+  var sourceSize = Object.keys(source).length; 
+  var arraySourceKeys = Object.keys(source);
+
+  for (var x = 0; x < collection.length; x++) {
+    let arrayCheck = [];
+    for (var y = 0; y < sourceSize; y++) {
+
+      if (collection[x][arraySourceKeys[y]] === source[arraySourceKeys[y]]) { //checks is collection and source have same prop/value pair
+          arrayCheck.push(source[arraySourceKeys[y]]); //counting the number of matces
+
+          if (arrayCheck.length === sourceSize ) { //check if every source prop-value is simultaniusly present in collection
+            arr.push(collection[x]);
+          }     
+         }
+    }
+  }
+  return arr;
+}
+
+/*5. Perform a search and replace on the sentence using the arguments provided and return the new sentence.*/
+function myReplace(str, before, after) {    
+  after = after.split("");
+  if (before[0] === before[0].toUpperCase()) {
+    after[0] = after[0].toUpperCase();
+  } else if (before[0] === before[0].toLowerCase()) {
+    after[0] = after[0].toLowerCase();
+  }
+  after = after.join("");
+  str = str.replace(before, after);
+
+  return str;
+}
+
+/*6. Translate the provided string to pig latin.*/
+function translatePigLatin(str) {
+  var regex = /^(.*?)[a,e,i,o,u]/;
+  var beforeVowel = regex.exec(str);
+  str = str.split("");
+  str.splice(0, beforeVowel[1].length);
+
+  if (beforeVowel[1].length > 0){
+    str = str.concat(beforeVowel[1] + "ay");
+  } else {
+    str = str.concat(beforeVowel[1] + "way");
+  }
+  str = str.join("");
+
+  return str;
+}
+
+/*7. The DNA strand is missing the pairing element. Take each character, get its pair, and return the results as a 2d array.*/
+function pairElement(str) {
+  str = str.split("");
+  var result = [];
+
+  for (var i = 0; i < str.length; i++) {
+    switch (str[i]) {
+      case "T":
+        result[i] = ["T","A"];
+        break;
+      case "A":
+        result[i] = ["A", "T"];
+        break;
+      case "C":
+        result[i] = ["C","G"];
+        break;
+      case "G":
+        result[i] = ["G", "C"];
+        break;
+    }
+  } 
+  return result;
+}
+
+//Find the missing letter in the passed letter range and return it
+function fearNotLetter(str) {
+    var alphabet = ("abcdefghijklmnopqrstuvwxyz");
+  var first = alphabet.indexOf(str[0]);
+  var strIndex = 0;
+  var missingLetter;
+
+  for (var i = first ; i < str.length ; i++) {
+      if (str[strIndex] === alphabet[i]) {
+          strIndex++;
+      } else {
+          missingLetter = alphabet[i];
+      }
+  }
+  return missingLetter;
 }
