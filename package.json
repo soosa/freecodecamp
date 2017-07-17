@@ -1,0 +1,12 @@
+{
+  "name": "freecodecamp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/vuk1066/freecodecamp.git",
+  "author": "Anett <anett.soos@city.ac.uk>",
+  "license": "MIT",
+  "dependencies": {
+    "global": "^4.3.2",
+    "learnyounode": "^3.5.10"
+  }
+}
